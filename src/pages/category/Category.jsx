@@ -10,6 +10,7 @@ import sild3 from "../../assets/home/slide3.jpg"
 import sild4 from "../../assets/home/slide4.jpg"
 import sild5 from "../../assets/home/slide5.jpg"
 import SectionTitle from '../../components/sectionTitle/SectionTitle';
+import Bistroboss from '../bistroBoss/Bistroboss';
 
 const Category = () => {
     return (
@@ -18,6 +19,7 @@ const Category = () => {
             title={'From 11.00 AM To 10.00 PM'}
             subTitle={'ORDER ONLINE'}
             ></SectionTitle>
+
             <Swiper
                 slidesPerView={3}
                 spaceBetween={30}
@@ -49,6 +51,9 @@ const Category = () => {
                     <h1 className='text-4xl text-white -mt-19 text-center'>Desserts</h1>
                 </SwiperSlide>
             </Swiper>
+
+            <Bistroboss>
+            </Bistroboss>
         </section>
     );
 };

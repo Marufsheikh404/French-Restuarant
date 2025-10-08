@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      backgroundImage:{
+        'hero-patten':"url('/src/assets/home/chef-service.jpg')",
+      },
       fontFamily:{
         cinzel:[ "Cinzel", "serif"],
       },
