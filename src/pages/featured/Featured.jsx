@@ -9,7 +9,7 @@ const Featured = () => {
                     subTitle={'FROM OUR MENU'}
                 ></SectionTitle>
             </div>
-            <div className="flex items-center justify-center gap-20 bg-featured bg-cover w-full h-96 insert-0 bg-opacity-100 mt-5">
+            <div className="flex items-center justify-center gap-20 bg-featured bg-fixed bg-cover w-full h-96 insert-0 bg-opacity-100 mt-5">
 
                 <div>
                     <img className="w-96" src={featured} alt="" />
