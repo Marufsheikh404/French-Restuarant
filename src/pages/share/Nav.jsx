@@ -1,14 +1,15 @@
 import { CgProfile } from "react-icons/cg";
 import logo from "../../assets/icon/151-1511569_cart-notifications-free-shopping-cart-favicon-hd-png-removebg-preview.png"
+import { NavLink } from "react-router-dom";
 
 const Nav = () => {
 
     const navOptions = (
         <div className="flex items-center gap-4">
-            <li className="btn text-[#EEFF25]">Home</li>
+            <NavLink to={'/'}><li className="btn text-[#EEFF25]">Home</li></NavLink>
             <li className="btn">Contact Us</li>
             <li className="btn">DashBoard</li>
-            <li className="btn">Our Menu</li>
+            <NavLink to={'/menu'}><li className="btn">Our Menu</li></NavLink>
             <li className="btn">Our Shop</li>
         </div>
     )
