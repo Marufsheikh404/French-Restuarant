@@ -8,6 +8,7 @@ export default {
     extend: {
       backgroundImage:{
         'hero-patten':"url('/src/assets/home/chef-service.jpg')",
+        'featured':"url('/src/assets/home/featured.jpg')"
       },
       fontFamily:{
         cinzel:[ "Cinzel", "serif"],
