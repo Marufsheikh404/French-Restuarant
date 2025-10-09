@@ -4,7 +4,7 @@ import Nav from "../pages/share/Nav";
 
 const Main = () => {
     return (
-        <div>
+        <div className="container px-2 mx-auto w-full">
             <Nav></Nav>
             <Outlet></Outlet>
             <Footer></Footer>

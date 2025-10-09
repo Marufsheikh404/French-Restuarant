@@ -14,7 +14,7 @@ const Nav = () => {
         </div>
     )
     return (
-        <div className="fixed z-10 w-[1280px] opacity-96 mx-auto opacity-96">
+        <div className="container fixed z-10 w-[1100px] opacity-96 mx-auto opacity-96">
             <div className="navbar shadow-sm relative">
                 {/* overlay effects */}
                 <div className="absolute inset-0 bg-black opacity-20 z-0 pointer-events-none"></div>
