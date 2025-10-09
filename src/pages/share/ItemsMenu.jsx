@@ -1,7 +1,6 @@
 
 const ItemsMenu = ({ item }) => {
     const { name, recipe, image, price } = item;
-    console.log(item)
     return (
         <section>
             <div className="flex items-center gap-5">
