@@ -11,7 +11,7 @@ import { SiComma } from "react-icons/si";
 const Testomoniya = () => {
     const [reviews, setReviews] = useState([]);
     useEffect(() => {
-        fetch('reviews.json')
+        fetch('http://localhost:5000/Reviews')
             .then(res => res.json())
             .then(data => setReviews(data))
     }, [])

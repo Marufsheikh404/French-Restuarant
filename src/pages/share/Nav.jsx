@@ -10,7 +10,7 @@ const Nav = () => {
             <li className="btn">Contact Us</li>
             <li className="btn">DashBoard</li>
             <NavLink to={'/menu'}><li className="btn">Our Menu</li></NavLink>
-            <li className="btn">Our Shop</li>
+            <NavLink to={'/order'}><li className="btn">Our Shop</li></NavLink>
         </div>
     )
     return (
