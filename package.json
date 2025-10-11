@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@smastrom/react-rating": "^1.5.0",
+    "firebase": "^12.4.0",
     "helmet": "^8.1.0",
     "localforage": "^1.10.0",
     "match-sorter": "^8.1.0",
@@ -21,6 +22,7 @@
     "react-next-parallax": "^0.1.0",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^7.9.3",
+    "react-simple-captcha": "^9.3.1",
     "react-tabs": "^6.1.0",
     "sort-by": "^1.2.0",
     "swiper": "^12.0.2"
