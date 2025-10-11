@@ -45,7 +45,7 @@ const Nav = () => {
                 <div className="navbar-end flex gap-4">
                     <img className="w-11" src={logo} alt="" />
                     <a href="#" className="font-semibold bg-gray-300 px-2 py-1 rounded-md transition-colors duration-300 ease-in-out hover:bg-gray-400">Sign_Out</a>
-                    <span><CgProfile className="text-4xl"></CgProfile></span>
+                    <NavLink to={'/login'}><span><CgProfile className="text-4xl transition-transform duration-500 ease-in-out hover:scale-125"></CgProfile></span></NavLink>
                 </div>
             </div>
         </div>
