@@ -1,46 +1,58 @@
 import { createContext, useEffect, useState } from "react";
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
 
 export const AuthContext = createContext(null);
-const AuthProvider = ({children}) => {
+const AuthProvider = ({ children }) => {
 
-    const [user,setUser]= useState([]);
+    const [user, setUser] = useState([]);
     const [loading, setLoading] = useState(true);
 
     // manage User OnAuthStateChange
-    useEffect(()=>{
-      const unSubcribe = onAuthStateChanged(auth,currentUser=>{
+    useEffect(() => {
+        const unSubcribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser)
             console.log('currentUser :', currentUser)
             setLoading(false)
         });
-        return ()=>{
+        return () => {
             return unSubcribe()
         }
-    },[])
+    }, [])
 
     // create User
-    const createUser = (email,password)=>{
-        return createUserWithEmailAndPassword(auth,email,password)
+    const createUser = (email, password) => {
+        setLoading(true);
+        return createUserWithEmailAndPassword(auth, email, password)
     };
 
     // signIn 
-    const signIn = (email,password)=>{
-        return signInWithEmailAndPassword(auth,email,password);
+    const signIn = (email, password) => {
+        setLoading(true)
+        return signInWithEmailAndPassword(auth, email, password);
     };
 
     // LogOut
-    const logOut = ()=>{
-        return signOut(auht);
+    const logOut = () => {
+        setLoading(true)
+        return signOut(auth);
     }
 
-    const authInfo ={
+    // updateUserProfile
+    const UpdateUserProfile = (name, photo) => {
+        return updateProfile(auth.currentUser, {
+            displayName: name, photoURL:photo
+        });
+    };
+
+    const authInfo = {
         user,
         loading,
+        setLoading,
         createUser,
         signIn,
-        logOut
+        logOut,
+        UpdateUserProfile
     }
     return (
         <AuthContext.Provider value={authInfo}>

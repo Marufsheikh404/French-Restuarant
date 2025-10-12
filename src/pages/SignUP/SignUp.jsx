@@ -1,16 +1,65 @@
 import { useForm } from 'react-hook-form';
-import siginImg from '../../assets/menu/Rectangle 77.png'
+import siginImg from '../../assets/menu/Rectangle 77.png';
+import useAuth from '../../hooks/useAuth';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
+
+    const navigate= useNavigate();
+
+    const { createUser, setLoading, UpdateUserProfile } = useAuth();
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm()
-    const onSubmit = (data) => console.log(data);
+        reset
+    } = useForm();
+
+    const onSubmit = async (data) => {
+        try {
+            setLoading(true);
+
+            // 1️⃣ create user with email & password
+            const loggerUser = await createUser(data.email, data.password);
+            console.log('Created user:', loggerUser.user);
+
+            // 2️⃣ update displayName & photoURL
+            try {
+                await UpdateUserProfile( data.name, data.photoURL);
+                console.log('User profile updated');
+            } catch (error) {
+                console.log('Profile update error:', error);
+            }
+
+            // 3️⃣ show success alert
+            Swal.fire({
+                title: 'Successfully Signed Up!',
+                icon: 'success',
+                draggable: true
+            });
+
+            // 4️⃣ reset form
+            reset();
+            navigate('/')
+
+        } catch (error) {
+            console.log('Signup error:', error);
+            Swal.fire({
+                title: 'Sign Up Failed!',
+                text: error.message,
+                icon: 'error'
+            });
+        } finally {
+            setLoading(false);
+        }
+    };
 
     return (
-        <div className="hero w-full mt-7 h-[800px] rounded-md" style={{ backgroundImage: `url(${siginImg})` }}>
+        <div
+            className="hero w-full mt-7 h-[800px] rounded-md"
+            style={{ backgroundImage: `url(${siginImg})` }}
+        >
             <div className="hero-content flex-col items-stretch p-5">
                 <div className="flex flex-col flex-1 items-center justify-center ">
                     <h1 className="text-5xl font-bold">SignUp now!</h1>
@@ -19,25 +68,57 @@ const SignUp = () => {
                         quasi. In deleniti eaque aut repudiandae et a id nisi.
                     </p>
                 </div>
-                <div className="card flex-1  w-full shadow-2xl">
+
+                <div className="card flex-1 w-full shadow-2xl">
                     <div className="card-body">
                         <form onSubmit={handleSubmit(onSubmit)} className="fieldset">
+
+                            {/* Name */}
                             <label className="label text-gray-500 text-3xl font-bold">Name</label>
-                            <input type="text" {...register("name", { required: true })} name='name' className="input w-full bg-white shadow-md" placeholder="Name" />
+                            <input
+                                type="text"
+                                {...register("name", { required: true })}
+                                placeholder="Name"
+                                className="input w-full bg-white shadow-md"
+                            />
                             {errors.name && <span>This field is required</span>}
 
+                            {/* Photo URL */}
+                            <label className="label text-gray-500 text-3xl font-bold">Photo URL</label>
+                            <input
+                                type="text"
+                                {...register("photoURL", { required: true })}
+                                placeholder="Photo URL"
+                                className="input w-full bg-white shadow-md"
+                            />
+                            {errors.photoURL && <span>Photo URL is required</span>}
+
+                            {/* Email */}
                             <label className="label text-gray-500 text-3xl font-bold">Email</label>
-                            <input type="email" {...register("email", { required: "Email Address is required" })}
-                                aria-invalid={errors.email ? "true" : "false"} name='email' className="input w-full bg-white shadow-md" placeholder="Email" />
+                            <input
+                                type="email"
+                                {...register("email", { required: "Email Address is required" })}
+                                placeholder="Email"
+                                className="input w-full bg-white shadow-md"
+                            />
                             {errors.email && <p role="alert">{errors.email.message}</p>}
 
+                            {/* Password */}
                             <label className="label text-gray-500 text-3xl font-bold">Password</label>
-                            <input type="password" {...register("password", { min: 6, max: 10 })} name='password' className="input w-full bg-white shadow-md" placeholder="Password" />
-                            {errors.password && <span>This field is required</span>}
+                            <input
+                                type="password"
+                                {...register("password", { required: true, minLength: 6 })}
+                                placeholder="Password"
+                                className="input w-full bg-white shadow-md"
+                            />
+                            {errors.password && <span>Password must be at least 6 characters</span>}
 
-                            <div><a className="link link-hover text-lg">Forgot password?</a></div>
-
-                            <button type="submit" className="btn border-none bg-[#D1A054] mt-4">Login</button>
+                            <button
+                                type="submit"
+                                className="btn border-none bg-[#D1A054] mt-4"
+                            >
+                                Sign Up
+                            </button>
                         </form>
                     </div>
                 </div>

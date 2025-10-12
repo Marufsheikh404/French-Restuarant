@@ -1,8 +1,23 @@
 import { CgProfile } from "react-icons/cg";
 import logo from "../../assets/icon/151-1511569_cart-notifications-free-shopping-cart-favicon-hd-png-removebg-preview.png"
 import { NavLink } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Nav = () => {
+
+    const { user, logOut } = useAuth();
+    const handleLogout = () => {
+        logOut()
+            .then(() => {
+                Swal.fire({
+                    title: "You Successfully LogOut!",
+                    text: "You clicked the button!",
+                    icon: "success"
+                });
+            })
+            .catch(error => { console.log(error) })
+    }
 
     const navOptions = (
         <div className="flex items-center gap-4">
@@ -44,8 +59,15 @@ const Nav = () => {
 
                 <div className="navbar-end flex gap-4">
                     <img className="w-11" src={logo} alt="" />
-                    <a href="#" className="font-semibold bg-gray-300 px-2 py-1 rounded-md transition-colors duration-300 ease-in-out hover:bg-gray-400">Sign_Out</a>
-                    <NavLink to={'/login'}><span><CgProfile className="text-4xl transition-transform duration-500 ease-in-out hover:scale-125"></CgProfile></span></NavLink>
+                    {
+                        user ?
+                            <>
+                                <a href="#" onClick={handleLogout} className="font-semibold bg-gray-300 px-2 py-1 rounded-md transition-colors duration-300 ease-in-out hover:bg-gray-400">Sign_Out</a>
+                                <span className="text-yellow-300 text-xl font-bold">{user?.
+                                    displayName
+                                }</span>
+                            </> : <><NavLink to={'/login'}><span><CgProfile className="text-4xl transition-transform duration-500 ease-in-out hover:scale-125"></CgProfile></span></NavLink></>
+                    }
                 </div>
             </div>
         </div>
