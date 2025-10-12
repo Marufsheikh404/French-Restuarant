@@ -1,13 +1,12 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import {useEffect, useRef, useState } from 'react';
 import loginImg from '../../assets/menu/Rectangle 77.png'
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
-import { AuthContext } from '../../Providers/AuthProvider';
-import { Result } from 'postcss';
 import { NavLink } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
 const Login = () => {
 
-    const { createUser } = useContext(AuthContext);
+    const { createUser } = useAuth();
 
     const [disable, setDisable] = useState(true);
     const captchaRef = useRef(null)
