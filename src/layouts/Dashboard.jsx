@@ -1,7 +1,12 @@
-import { FaAd, FaCalculator, FaHome, FaShoppingCart } from "react-icons/fa";
+import { FaAd, FaBook, FaCalculator, FaHome, FaShoppingCart, FaUserAlt, FaUtensils } from "react-icons/fa";
+import { FaList, FaListCheck, FaLock, FaUser, FaUsers } from "react-icons/fa6";
+import { MdPermContactCalendar } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
+
+    // TODO: get admin value form the database
+    const isAdmin = true;
     return (
         <section >
             <div className="flex ">
@@ -12,31 +17,56 @@ const Dashboard = () => {
                         <p className="text-xm text-black font-cinzel">RESTAURENT</p>
                     </div>
                     <ul className="menu p-4">
-                        <div className="flex items-center gap-3">
-                            <FaHome />
-                            <li ><NavLink to={'/dashboard/adminHome'}>Admin Home</NavLink></li>
-                        </div>
+                        {
+                            isAdmin ? <>
+                                <div className="flex items-center gap-3">
+                                    <FaHome />
+                                    <li ><NavLink to={'/dashboard/adminHome'}>Admin Home</NavLink></li>
+                                </div>
 
-                        <div className="flex items-center gap-3">
-                            <FaCalculator />
-                            <li ><NavLink to={'/dashboard/reservation'}>Reservation</NavLink></li>
-                        </div>
+                                <div className="flex items-center gap-3">
+                                    <FaUtensils />
+                                    <li ><NavLink to={'/dashboard/Add'}>Add Items</NavLink></li>
+                                </div>
 
-                        <div className="flex items-center gap-3">
-                            <FaAd />
-                            <li ><NavLink to={'/dashboard/review'}>Reviews</NavLink></li>
-                        </div>
+                                <div className="flex items-center gap-3">
+                                    <FaList />
+                                    <li ><NavLink to={'/dashboard/manages'}>Manages Items</NavLink></li>
+                                </div>
 
-                        <div className="flex items-center gap-3">
-                            <FaShoppingCart />
-                            <li ><NavLink to={'/dashboard/cart'}>My Cart</NavLink></li>
-                        </div>
-                        <div className="divider bg-white w-50 h-1"></div>
+                                <div className="flex items-center gap-3">
+                                    <FaBook />
+                                    <li ><NavLink to={'/dashboard/booking'}>Manages Bookings</NavLink></li>
+                                </div>
 
-                        <div className="flex items-center gap-3">
-                            <FaHome />
-                            <li ><NavLink to={'/'}>Home</NavLink></li>
-                        </div>
+                                <div className="flex items-center gap-3">
+                                    <FaUsers />
+                                    <li ><NavLink to={'/dashboard/alluser'}>All Users</NavLink></li>
+                                </div>
+                                <div className="divider bg-white w-50 h-1"></div>
+                            </> : <>
+                                {/* shared list */}
+                                <div className="flex items-center gap-3">
+                                    <FaHome />
+                                    <li ><NavLink to={'/'}>Home</NavLink></li>
+                                </div>
+
+                                <div className="flex items-center gap-3">
+                                    <FaListCheck />
+                                    <li ><NavLink to={'/dashboard/menu'}>Menu</NavLink></li>
+                                </div>
+
+                                <div className="flex items-center gap-3">
+                                    <FaLock />
+                                    <li ><NavLink to={'/dashboard/shop'}>Shop</NavLink></li>
+                                </div>
+
+                                <div className="flex items-center gap-3">
+                                    <MdPermContactCalendar />
+                                    <li ><NavLink to={'/dashboard/contact'}>Contact</NavLink></li>
+                                </div>
+                            </>
+                        }
                     </ul>
                 </div>
                 {/* dashboard content */}

@@ -4,6 +4,7 @@ import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-s
 import { NavLink, replace, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import Swal from 'sweetalert2';
+import SocialLogin from '../../components/SocialLogin/SocialLogin';
 
 const Login = () => {
     const { signIn, setLoading } = useAuth();
@@ -45,7 +46,7 @@ const Login = () => {
                 draggable: true,
             });
             form.reset();
-            navigate(from ,{replace:true});
+            navigate(from, { replace: true });
         } catch (error) {
             console.error(error);
             Swal.fire({
@@ -121,9 +122,12 @@ const Login = () => {
                             </button>
                         </form>
 
-                        <h1>
-                            Here You Go? <NavLink to={'/signUp'}>Please SignUp</NavLink>
-                        </h1>
+                        <div className="flex items-center gap-3">
+                            <h1>
+                                Here You Go? <NavLink to={'/signUp'}>Please SignUp</NavLink>
+                            </h1>
+                            <SocialLogin></SocialLogin>
+                        </div>
                     </div>
                 </div>
             </div>

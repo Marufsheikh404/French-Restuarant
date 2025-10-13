@@ -9,51 +9,59 @@ import PrivateRoutes from "./PrivateRoutes";
 import Secret from "../pages/Secret/Secret";
 import Dashboard from "../layouts/Dashboard";
 import Cart from "../pages/Dashboard/Cart/Cart";
+import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 
 
-const Routes =createBrowserRouter([
-        {
-            path: '/',
-            element:<Main></Main>,
-            children:[
-                {
-                    path:'/',
-                    element:<Home></Home>
-                },
-                {
-                    path:'/menu',
-                    element:<Menu></Menu>
-                },
-                {
-                    path:'/order/:category',
-                    element:<Order></Order>
-                },
-                {
-                    path:'/order',
-                    element:<Order></Order>
-                },
-                {
-                    path:'/login',
-                    element:<Login></Login>
-                },
-                {
-                    path:'/signUp',
-                    element: <SignUp></SignUp>
-                },
-                {
-                    path:'/secret',
-                    element:<PrivateRoutes><Secret></Secret></PrivateRoutes>
-                }
-            ]
-        },
-        {
-            path: '/dashboard',
-            element:<Dashboard></Dashboard>,
-            children:[{
-                path:'cart',
-                element:<Cart></Cart>
-            }]
-        }
+const Routes = createBrowserRouter([
+    {
+        path: '/',
+        element: <Main></Main>,
+        children: [
+            {
+                path: '/',
+                element: <Home></Home>
+            },
+            {
+                path: '/menu',
+                element: <Menu></Menu>
+            },
+            {
+                path: '/order/:category',
+                element: <Order></Order>
+            },
+            {
+                path: '/order',
+                element: <Order></Order>
+            },
+            {
+                path: '/login',
+                element: <Login></Login>
+            },
+            {
+                path: '/signUp',
+                element: <SignUp></SignUp>
+            },
+            {
+                path: '/secret',
+                element: <PrivateRoutes><Secret></Secret></PrivateRoutes>
+            }
+        ]
+    },
+    {
+        path: '/dashboard',
+        element: <PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>,
+        children: [
+            {
+                path: 'cart',
+                element: <Cart></Cart>
+            },
+            // admin panel
+            {
+                path:'alluser',
+                element:<AllUsers></AllUsers>
+            }
+        ]
+    }
 ])
 
 export default Routes;

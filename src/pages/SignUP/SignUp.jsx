@@ -3,10 +3,13 @@ import siginImg from '../../assets/menu/Rectangle 77.png';
 import useAuth from '../../hooks/useAuth';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+import SocialLogin from '../../components/SocialLogin/SocialLogin';
 
 const SignUp = () => {
 
-    const navigate= useNavigate();
+    const navigate = useNavigate();
+    const axiosPublic = useAxiosPublic();
 
     const { createUser, setLoading, UpdateUserProfile } = useAuth();
     const {
@@ -23,26 +26,27 @@ const SignUp = () => {
             // 1️⃣ create user with email & password
             const loggerUser = await createUser(data.email, data.password);
             console.log('Created user:', loggerUser.user);
-
-            // 2️⃣ update displayName & photoURL
             try {
-                await UpdateUserProfile( data.name, data.photoURL);
-                console.log('User profile updated');
+                await UpdateUserProfile(data.name, data.photoURL);
+                const userInfo = {
+                    name: data.name,
+                    email: data.email
+                }
+                axiosPublic.post('/users', userInfo)
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            Swal.fire({
+                                title: 'Successfully Signed Up!',
+                                icon: 'success',
+                                draggable: true
+                            });
+                            reset();
+                            navigate('/')
+                        }
+                    })
             } catch (error) {
                 console.log('Profile update error:', error);
             }
-
-            // 3️⃣ show success alert
-            Swal.fire({
-                title: 'Successfully Signed Up!',
-                icon: 'success',
-                draggable: true
-            });
-
-            // 4️⃣ reset form
-            reset();
-            navigate('/')
-
         } catch (error) {
             console.log('Signup error:', error);
             Swal.fire({
@@ -120,6 +124,9 @@ const SignUp = () => {
                                 Sign Up
                             </button>
                         </form>
+                        <div>
+                            <SocialLogin></SocialLogin>
+                        </div>
                     </div>
                 </div>
             </div>
