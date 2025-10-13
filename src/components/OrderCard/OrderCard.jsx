@@ -1,18 +1,21 @@
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
+import useAxios from "../../hooks/Axios/useAxios";
+import useCard from "../../hooks/useCard";
+
 
 const OrderCard = ({ order }) => {
     const { user } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
+    const axiosSecure =useAxios();
+    const [, refetch] = useCard();
     const { image, price, name, recipe, _id } = order;
 
-    const handleAddToCard = (food) => {
-        const { image, price, name, _id } = food;
+    const handleAddToCard = () => {
         if (user && user.email) {
-            // todo: to send data to the database
+            // done: to send data to the database
             const cardItem = {
                 menuId: _id,
                 email: user.email,
@@ -20,7 +23,7 @@ const OrderCard = ({ order }) => {
                 price,
                 image
             }
-            axios.post('http://localhost:5000/carts', cardItem)
+            axiosSecure.post('/carts', cardItem)
                 .then(res => {
                     if (res.data.insertedId) {
                         Swal.fire({
@@ -30,6 +33,8 @@ const OrderCard = ({ order }) => {
                             showConfirmButton: false,
                             timer: 1500
                         });
+                        // refetch to cart to update the card
+                        refetch();
                     }
                 })
         } else {
@@ -63,7 +68,7 @@ const OrderCard = ({ order }) => {
                     <p className="text-sm text-gray-500">{recipe}</p>
                     <div className="card-actions">
                         <button
-                            onClick={() => { handleAddToCard(order) }}
+                            onClick={ handleAddToCard}
                             className="btn text-[#BB8506] bg-[#E8E8E8] border-none border-b-4 !border-b-[#BB8506] rounded-md">ADD TO CARD</button>
                     </div>
                 </div>

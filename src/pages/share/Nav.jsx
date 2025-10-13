@@ -3,8 +3,11 @@ import logo from "../../assets/icon/151-1511569_cart-notifications-free-shopping
 import { NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
+import useCard from "../../hooks/useCard";
 
 const Nav = () => {
+    // tanstack query
+    const [cart] = useCard();
     const { user, logOut } = useAuth();
 
     const handleLogout = () => {
@@ -48,10 +51,12 @@ const Nav = () => {
 
                 {/* User Section */}
                 <div className="flex items-center gap-4">
-                    <div className="relative">
-                        <img className="w-9" src={logo} alt="" />
-                        <div className="badge badge-sm badge-secondary absolute -top-1 -right-2">0</div>
-                    </div>
+                    <NavLink to={'/dashboard/cart'}>
+                        <div className="relative">
+                            <img className="w-9" src={logo} alt="" />
+                            <div className="badge badge-sm badge-secondary absolute -top-1 -right-2">{cart.length}</div>
+                        </div>
+                    </NavLink>
 
                     {user ? (
                         <div className="flex items-center gap-3">
