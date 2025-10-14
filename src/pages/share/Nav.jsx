@@ -13,6 +13,7 @@ const Nav = () => {
     const handleLogout = () => {
         logOut()
             .then(() => {
+                localStorage.removeItem('access-token')
                 Swal.fire({
                     title: "Successfully Logged Out!",
                     text: "Come back soon!",

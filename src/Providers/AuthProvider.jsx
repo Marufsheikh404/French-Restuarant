@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
@@ -8,18 +9,32 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState([]);
     const [loading, setLoading] = useState(true);
     const googleProvider = new GoogleAuthProvider();
+    const axiosPublic = useAxiosPublic();
 
     // manage User OnAuthStateChange
     useEffect(() => {
         const unSubcribe = onAuthStateChanged(auth, currentUser => {
-            setUser(currentUser)
-            console.log('currentUser :', currentUser)
-            setLoading(false)
+            setUser(currentUser);
+            if (currentUser) {
+                const userInfo = { email: currentUser.email };
+                axiosPublic.post('/jwt', userInfo)
+                    .then(res => {
+                        if (res.data.token) {
+                            localStorage.setItem('access-token', res.data.token);
+                        } else {
+                            localStorage.removeItem('access-token');
+                        }
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        localStorage.removeItem('access-token');
+                    });
+            }
+            setLoading(false);
         });
-        return () => {
-            return unSubcribe()
-        }
-    }, [])
+
+        return () => unSubcribe(); // <-- clean up
+    }, [axiosPublic]);
 
     // create User
     const createUser = (email, password) => {
@@ -33,7 +48,7 @@ const AuthProvider = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password);
     };
     // googleSignIn
-    const googleSignIn =()=>{
+    const googleSignIn = () => {
         return signInWithPopup(auth, googleProvider);
     }
 
@@ -46,7 +61,7 @@ const AuthProvider = ({ children }) => {
     // updateUserProfile
     const UpdateUserProfile = (name, photo) => {
         return updateProfile(auth.currentUser, {
-            displayName: name, photoURL:photo
+            displayName: name, photoURL: photo
         });
     };
 
