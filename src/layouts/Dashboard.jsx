@@ -2,11 +2,13 @@ import { FaAd, FaBook, FaCalculator, FaCaretDown, FaHome, FaShoppingCart, FaUser
 import { FaList, FaListCheck, FaLock, FaUser, FaUsers } from "react-icons/fa6";
 import { MdPermContactCalendar } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
 
     // TODO: get admin value form the database
-    const isAdmin = true;
+    const [ isAdmin ]= useAdmin();
+    // const isAdmin = true;
     return (
         <section >
             <div className="flex ">

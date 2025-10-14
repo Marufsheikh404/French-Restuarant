@@ -12,7 +12,7 @@ const useAxios = () => {
     // request interceptors to add authorization header for every secure call to the api
     axiosSecure.interceptors.request.use((config) => {
         const token = localStorage.getItem('access-token')
-        console.log('secure', token);
+        // console.log('secure', token);
         config.headers.authorization = `Bearer ${token}`;
         return config;
     }, (error) => {
@@ -24,7 +24,7 @@ const useAxios = () => {
         return response;
     }, async (error) => {
         const status = error.response.status;
-        console.log('status error in the interceptors', status);
+        // console.log('status error in the interceptors', status);
         // it check you get 401 and 403 status you get to out in the page entry in the login page
         if (status === 401 || status === 403) {
             await logOut();
