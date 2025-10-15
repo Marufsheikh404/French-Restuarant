@@ -7,8 +7,11 @@ import useAdmin from "../hooks/useAdmin";
 const Dashboard = () => {
 
     // TODO: get admin value form the database
-    const [ isAdmin ]= useAdmin();
+    const [isAdmin, isAdminLoading] = useAdmin();
     // const isAdmin = true;
+    if (isAdminLoading) {
+        return <span className="loading loading-dots loading-xl"></span>
+    }
     return (
         <section >
             <div className="flex ">
@@ -20,15 +23,15 @@ const Dashboard = () => {
                     </div>
                     <ul className="menu p-4">
                         {
-                            isAdmin ? <>
+                            isAdmin ? (<>
                                 <div className="flex items-center gap-3">
                                     <FaHome />
-                                    <li ><NavLink to={'/dashboard/adminHome'}>Admin Home</NavLink></li>
+                                    <li ><NavLink to={'/'}>Admin Home</NavLink></li>
                                 </div>
 
                                 <div className="flex items-center gap-3">
                                     <FaUtensils />
-                                    <li ><NavLink to={'/dashboard/Add'}>Add Items</NavLink></li>
+                                    <li ><NavLink to={'/dashboard/AddItems'}>Add Items</NavLink></li>
                                 </div>
 
                                 <div className="flex items-center gap-3">
@@ -46,28 +49,30 @@ const Dashboard = () => {
                                     <li ><NavLink to={'/dashboard/alluser'}>All Users</NavLink></li>
                                 </div>
                                 <div className="divider bg-white w-50 h-1"></div>
-                            </> : <>
-                                {/* shared list */}
-                                <div className="flex items-center gap-3">
-                                    <FaHome />
-                                    <li ><NavLink to={'/'}>Home</NavLink></li>
-                                </div>
+                            </>):(
+                                <>
+                                    {/* shared list */}
+                                    <div className="flex items-center gap-3">
+                                        <FaHome />
+                                        <li ><NavLink to={'/'}>Home</NavLink></li>
+                                    </div>
 
-                                <div className="flex items-center gap-3">
-                                    <FaListCheck />
-                                    <li ><NavLink to={'/dashboard/menu'}>Menu</NavLink></li>
-                                </div>
+                                    <div className="flex items-center gap-3">
+                                        <FaListCheck />
+                                        <li ><NavLink to={'/dashboard/menu'}>Menu</NavLink></li>
+                                    </div>
 
-                                <div className="flex items-center gap-3">
-                                    <FaLock />
-                                    <li ><NavLink to={'/dashboard/shop'}>Shop</NavLink></li>
-                                </div>
+                                    <div className="flex items-center gap-3">
+                                        <FaLock />
+                                        <li ><NavLink to={'/dashboard/shop'}>Shop</NavLink></li>
+                                    </div>
 
-                                <div className="flex items-center gap-3">
-                                    <MdPermContactCalendar />
-                                    <li ><NavLink to={'/dashboard/contact'}>Contact</NavLink></li>
-                                </div>
-                            </>
+                                    <div className="flex items-center gap-3">
+                                        <MdPermContactCalendar />
+                                        <li ><NavLink to={'/dashboard/contact'}>Contact</NavLink></li>
+                                    </div>
+                                </>
+                            )
                         }
                     </ul>
                 </div>
