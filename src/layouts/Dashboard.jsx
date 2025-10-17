@@ -36,13 +36,13 @@ const Dashboard = () => {
 
                                 <div className="flex items-center gap-3">
                                     <FaList />
-                                    <li ><NavLink to={'/dashboard/manages'}>Manages Items</NavLink></li>
+                                    <li ><NavLink to={'/dashboard/ManagesItem'}>Manages Items</NavLink></li>
                                 </div>
 
-                                <div className="flex items-center gap-3">
+                                {/* <div className="flex items-center gap-3">
                                     <FaBook />
-                                    <li ><NavLink to={'/dashboard/booking'}>Manages Bookings</NavLink></li>
-                                </div>
+                                    <li ><NavLink to={'/dashboard/'}>Manages Bookings</NavLink></li>
+                                </div> */}
 
                                 <div className="flex items-center gap-3">
                                     <FaUsers />

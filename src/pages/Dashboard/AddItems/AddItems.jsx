@@ -2,11 +2,16 @@ import { useForm } from "react-hook-form";
 import { FaUtensils } from "react-icons/fa";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAxios from "../../../hooks/Axios/useAxios";
-import Swal from "sweetalert2";
+import 'notyf/notyf.min.css'; // for React, Vue and Svelte
+import { Notyf } from "notyf";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 const AddItems = () => {
+
+    // Create an instance of Notyf
+    const notyf = new Notyf();
+
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxios();
     const { register, handleSubmit, reset } = useForm()
@@ -41,6 +46,7 @@ const AddItems = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
+                notyf.success(' have been successfully saved!');
             }
         }
     };
