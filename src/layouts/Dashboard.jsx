@@ -59,7 +59,7 @@ const Dashboard = () => {
 
                                     <div className="flex items-center gap-3">
                                         <FaListCheck />
-                                        <li ><NavLink to={'/dashboard/menu'}>Menu</NavLink></li>
+                                        <li ><NavLink to={'/menu'}>Menu</NavLink></li>
                                     </div>
 
                                     <div className="flex items-center gap-3">

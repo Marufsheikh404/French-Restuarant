@@ -2,6 +2,7 @@ import { FaTrash } from "react-icons/fa6";
 import useCard from "../../../hooks/useCard";
 import Swal from "sweetalert2";
 import useAxios from "../../../hooks/Axios/useAxios";
+import { NavLink } from "react-router-dom";
 
 const Cart = () => {
     const [cart,refetch] = useCard();
@@ -39,7 +40,9 @@ const Cart = () => {
             <div className="flex items-center justify-between">
                 <h2 className="text-3xl font-bold">Total Orders:{cart.length}</h2>
                 <h2 className="text-3xl font-bold">Total Prices:${totalPrice}</h2>
-                <button className="bg-[#D1A054] btn border-none text-md">pay</button>
+               {
+                cart.length ? <NavLink to={'/dashboard/payment'}><button className="bg-[#D1A054] btn border-none text-md">pay</button></NavLink> :<button disabled className="bg-[#D1A054] btn border-none text-md">pay</button>
+               }
             </div>
             <div className="overflow-x-auto">
                 <table className="table mt-8">

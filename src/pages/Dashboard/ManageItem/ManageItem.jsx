@@ -3,6 +3,7 @@ import useMenu from "../../../hooks/useMenu";
 import { GrDocumentUpdate } from "react-icons/gr";
 import Swal from "sweetalert2";
 import useAxios from "../../../hooks/Axios/useAxios";
+import { NavLink } from "react-router-dom";
 
 const ManageItem = () => {
     const [menu, , refetch] = useMenu();
@@ -19,7 +20,7 @@ const ManageItem = () => {
             confirmButtonText: "Yes, delete it!"
         }).then(async (result) => {
             if (result.isConfirmed) {
-                const res = await axiosSecure.delete(`/Menu/${id}`)
+                const res = await axiosSecure.delete(`/Menu/${item._id}`)
                 if (res.data.deletedCount > 0) {
                     refetch();
                     Swal.fire({
@@ -78,7 +79,7 @@ const ManageItem = () => {
                                 </td>
                                 {/* update */}
                                 <td>
-                                    <button className="btn btn-ghost btn-md"> <GrDocumentUpdate className="text-orange-400" /></button>
+                                    <NavLink to={`/dashboard/updateItem/${item._id}`}><button className="btn btn-ghost btn-md"> <GrDocumentUpdate className="text-orange-400" /></button></NavLink>
                                 </td>
                                 {/* delete */}
                                 <th>
