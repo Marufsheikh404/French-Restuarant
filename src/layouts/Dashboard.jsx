@@ -1,4 +1,4 @@
-import { FaAd, FaBook, FaCalculator, FaCaretDown, FaHome, FaShoppingCart, FaUserAlt, FaUtensils } from "react-icons/fa";
+import { FaAd, FaBook, FaCalculator, FaCaretDown, FaHome, FaPaypal, FaShoppingCart, FaUserAlt, FaUtensils } from "react-icons/fa";
 import { FaList, FaListCheck, FaLock, FaUser, FaUsers } from "react-icons/fa6";
 import { MdPermContactCalendar } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
@@ -70,6 +70,11 @@ const Dashboard = () => {
                                     <div className="flex items-center gap-3">
                                         <MdPermContactCalendar />
                                         <li ><NavLink to={'/dashboard/contact'}>Contact</NavLink></li>
+                                    </div>
+
+                                    <div className="flex items-center gap-3">
+                                        <FaPaypal></FaPaypal>
+                                        <li ><NavLink to={'/dashboard/paymentHistory'}>Payment-History</NavLink></li>
                                     </div>
                                 </>
                             )
