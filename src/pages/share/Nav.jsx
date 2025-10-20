@@ -4,10 +4,12 @@ import { NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import useCard from "../../hooks/useCard";
+import useAdmin from "../../hooks/useAdmin";
 
 const Nav = () => {
     // tanstack query
     const [cart] = useCard();
+    const [isAdmin]= useAdmin();
     const { user, logOut } = useAuth();
 
     const handleLogout = () => {
@@ -29,7 +31,12 @@ const Nav = () => {
         <ul className="flex flex-col lg:flex-row items-center gap-8 text-white font-medium">
             <NavLink to={'/'}><li className="hover:text-[#EEFF25] transition">Home</li></NavLink>
             <li className="hover:text-[#EEFF25] transition cursor-pointer">Contact Us</li>
-            <li className="hover:text-[#EEFF25] transition cursor-pointer">Dashboard</li>
+            {
+                user && isAdmin && <NavLink to={'/dashboard/adminHome'}><li className="hover:text-[#EEFF25] transition cursor-pointer">Dashboard</li></NavLink>
+            }
+            {
+                user && !isAdmin && <NavLink to={'/dashboard/userHome'}><li className="hover:text-[#EEFF25] transition cursor-pointer">Dashboard</li></NavLink>
+            }
             <NavLink to={'/menu'}><li className="hover:text-[#EEFF25] transition">Our Menu</li></NavLink>
             <NavLink to={'/order'}><li className="hover:text-[#EEFF25] transition">Our Shop</li></NavLink>
         </ul>

@@ -26,7 +26,7 @@ const Dashboard = () => {
                             isAdmin ? (<>
                                 <div className="flex items-center gap-3">
                                     <FaHome />
-                                    <li ><NavLink to={'/'}>Admin Home</NavLink></li>
+                                    <li ><NavLink to={'/dashboard/adminHome'}>Admin Home</NavLink></li>
                                 </div>
 
                                 <div className="flex items-center gap-3">
@@ -54,7 +54,7 @@ const Dashboard = () => {
                                     {/* shared list */}
                                     <div className="flex items-center gap-3">
                                         <FaHome />
-                                        <li ><NavLink to={'/'}>Home</NavLink></li>
+                                        <li ><NavLink to={'/dashboard/userHome'}>Home</NavLink></li>
                                     </div>
 
                                     <div className="flex items-center gap-3">
