@@ -8,11 +8,19 @@ const AdminHome = () => {
     const { user } = useAuth();
     const axiosSecure = useAxios();
 
-    const { data:stats } = useQuery({
+    const { data: stats } = useQuery({
         queryKey: ['admin-stats'],
         queryFn: async () => {
             const res = await axiosSecure.get('/admin-stats');
             return res.data
+        }
+    });
+
+    const { data: chart = {} } = useQuery({
+        queryKey: ['order-stats'],
+        queryFn: async () => {
+            const result = await axiosSecure.get('/order-stats');
+            return result.data;
         }
     })
     return (
@@ -36,7 +44,7 @@ const AdminHome = () => {
 
                 <div className="stat bg-gradient-to-r from-[#D3A256] to-[#FDE8C0]">
                     <div className="stat-figure text-secondary">
-                    <FaUsers className="text-xl"></FaUsers>
+                        <FaUsers className="text-xl"></FaUsers>
                     </div>
                     <div className="stat-title text-black text-xl font-bold">Customers</div>
                     <div className="stat-value">{stats?.users || 0}</div>
