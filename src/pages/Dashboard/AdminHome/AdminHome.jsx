@@ -64,13 +64,6 @@ const AdminHome = () => {
 
     return (
         <div>
-            <h1 className="text-3xl text-black">
-                <span className="mr-3">Well Come</span>
-                {
-                    user?.displayName ? user.displayName : 'Back'
-                }
-            </h1>
-
             <div className="stats shadow flex gap-2 mt-3">
                 <div className="stat bg-gradient-to-r from-[#BB34F5] to-[#FCDBFF]">
                     <div className="stat-figure text-secondary">

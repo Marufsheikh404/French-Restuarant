@@ -2,9 +2,11 @@ import { useForm } from 'react-hook-form';
 import siginImg from '../../assets/menu/Rectangle 77.png';
 import useAuth from '../../hooks/useAuth';
 import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import SocialLogin from '../../components/SocialLogin/SocialLogin';
+import signUPAnimation from '../../assets/SignUp.json'
+import Lottie from 'lottie-react';
 
 const SignUp = () => {
 
@@ -64,17 +66,13 @@ const SignUp = () => {
             className="hero w-full mt-7 h-[800px] rounded-md"
             style={{ backgroundImage: `url(${siginImg})` }}
         >
-            <div className="hero-content flex-col items-stretch p-5">
-                <div className="flex flex-col flex-1 items-center justify-center ">
-                    <h1 className="text-5xl font-bold">SignUp now!</h1>
-                    <p className="py-6">
-                        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-                        quasi. In deleniti eaque aut repudiandae et a id nisi.
-                    </p>
-                </div>
-
-                <div className="card flex-1 w-full shadow-2xl">
-                    <div className="card-body">
+            <div className="hero-content flex flex-col lg:flex-row items-stretch p-5">
+                {/* signUp from */}
+                <div className="card w-full shadow-2xl flex-1">
+                    <div className="flex flex-col  items-center justify-center ">
+                        <h1 className="text-5xl font-bold">SignUp now!</h1>
+                    </div>
+                    <div className="card-body flex flex-col w-full">
                         <form onSubmit={handleSubmit(onSubmit)} className="fieldset">
 
                             {/* Name */}
@@ -124,10 +122,15 @@ const SignUp = () => {
                                 Sign Up
                             </button>
                         </form>
-                        <div>
+                        <div className='flex items-center gap-3'>
+                            <h1 className='text-lg text-[#D1A054] font-bold'>Already Registered? <NavLink to={'/login'}>Go To Login</NavLink></h1>
                             <SocialLogin></SocialLogin>
                         </div>
                     </div>
+                </div>
+
+                <div className='w-full lg:w-1/2 flex justify-center'>
+                    <Lottie animationData={signUPAnimation}></Lottie>
                 </div>
             </div>
         </div>

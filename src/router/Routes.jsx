@@ -18,6 +18,7 @@ import Payment from "../pages/Dashboard/Payment/Payment";
 import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 import UserHome from "../pages/Dashboard/UserHome/UserHome";
 import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
+import ContactUs from "../pages/ContactUs/ContactUs";
 
 
 const Routes = createBrowserRouter([
@@ -36,6 +37,10 @@ const Routes = createBrowserRouter([
             {
                 path: '/order/:category',
                 element: <Order></Order>
+            },
+            {
+                path:'/contactUs',
+                element:<ContactUs></ContactUs>
             },
             {
                 path: '/order',

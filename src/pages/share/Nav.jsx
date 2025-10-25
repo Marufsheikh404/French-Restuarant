@@ -30,7 +30,7 @@ const Nav = () => {
     const navOptions = (
         <ul className="flex flex-col lg:flex-row items-center gap-8 text-white font-medium">
             <NavLink to={'/'}><li className="hover:text-[#EEFF25] transition">Home</li></NavLink>
-            <li className="hover:text-[#EEFF25] transition cursor-pointer">Contact Us</li>
+            <NavLink to={'/contactUs'}><li className="hover:text-[#EEFF25] transition cursor-pointer">Contact Us</li></NavLink>
             {
                 user && isAdmin && <NavLink to={'/dashboard/adminHome'}><li className="hover:text-[#EEFF25] transition cursor-pointer">Dashboard</li></NavLink>
             }

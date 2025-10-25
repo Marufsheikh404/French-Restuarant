@@ -5,6 +5,8 @@ import { NavLink, replace, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import Swal from 'sweetalert2';
 import SocialLogin from '../../components/SocialLogin/SocialLogin';
+import Lottie from 'lottie-react';
+import loginAnimation from '../../assets/Login verification.json'
 
 const Login = () => {
     const { signIn, setLoading } = useAuth();
@@ -61,77 +63,55 @@ const Login = () => {
 
     // ✅ return অংশ কম্পোনেন্টের ভেতরেই থাকবে
     return (
-        <div
-            className="hero w-full mt-7 h-[800px] rounded-md"
-            style={{ backgroundImage: `url(${loginImg})` }}
-        >
-            <div className="hero-content flex-col items-stretch p-5">
-                <div className="flex flex-col flex-1 items-center justify-center">
-                    <h1 className="text-5xl font-bold">Login now!</h1>
-                    <p className="py-6">
-                        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-                        quasi. In deleniti eaque aut repudiandae et a id nisi.
-                    </p>
-                </div>
+        <div className="hero w-full mt-7 h-[800px] rounded-md" style={{ backgroundImage: `url(${loginImg})` }}>
+            {/* main container: flex row */}
+            <div className="hero-content flex flex-col lg:flex-row items-stretch p-5 gap-5 w-full">
 
-                <div className="card flex-1 w-full shadow-2xl">
+                {/* Login form */}
+                <div className=" w-full  lg:w-1/2 card shadow-2xl">
+                    <div className="flex flex-col flex-1 items-center justify-center ">
+                        <h1 className="text-5xl font-bold">Login now!</h1>
+                    </div>
                     <div className="card-body">
                         <form onSubmit={handleSubmit} className="fieldset">
                             <label className="label text-gray-500 text-3xl font-bold">Name</label>
-                            <input
-                                type="text"
-                                name="name"
-                                className="input w-full bg-white shadow-md"
-                                placeholder="Name"
-                            />
+                            <input type="text" name="name" className="input w-full bg-white shadow-md" placeholder="Name" />
 
                             <label className="label text-gray-500 text-3xl font-bold">Email</label>
-                            <input
-                                type="email"
-                                name="email"
-                                className="input w-full bg-white shadow-md"
-                                placeholder="Email"
-                            />
+                            <input type="email" name="email" className="input w-full bg-white shadow-md" placeholder="Email" />
 
                             <label className="label text-gray-500 text-3xl font-bold">Password</label>
-                            <input
-                                type="password"
-                                name="password"
-                                className="input w-full bg-white shadow-md"
-                                placeholder="Password"
-                            />
+                            <input type="password" name="password" className="input w-full bg-white shadow-md" placeholder="Password" />
 
                             <div>
-                                <a className="link link-hover text-lg">Forgot password?</a>
+                                <a className="link link-hover text-lg text-[#D1A054]">Forgot password?</a>
                             </div>
 
                             <label className="label text-gray-500 text-xl my-3 font-bold">
                                 <LoadCanvasTemplate />
                             </label>
 
-                            <input
-                                type="text"
-                                onBlur={handleCaptcha}
-                                name="captcha"
-                                className="input w-full bg-white shadow-md"
-                                placeholder="Enter Captcha"
-                            />
+                            <input type="text" onBlur={handleCaptcha} name="captcha" className="input w-full bg-white shadow-md" placeholder="Enter Captcha" />
 
-                            <button disabled={disable} className="btn border-none bg-[#D1A054] mt-4">
-                                Sign In
-                            </button>
+                            <button disabled={disable} className="btn border-none bg-[#D1A054] mt-4">Sign In</button>
                         </form>
 
                         <div className="flex items-center gap-3">
-                            <h1>
-                                Here You Go? <NavLink to={'/signUp'}>Please SignUp</NavLink>
+                            <h1 className='text-lg font-bold text-[#D1A054]'>
+                                <span className='text-md'>New Here?</span> <NavLink to={'/signUp'}>Create a New Account</NavLink>
                             </h1>
-                            <SocialLogin></SocialLogin>
+                            <SocialLogin />
                         </div>
                     </div>
                 </div>
+
+                {/* Login animation */}
+                <div className='w-full lg:w-1/2 flex justify-center'>
+                    <Lottie animationData={loginAnimation} />
+                </div>
             </div>
         </div>
+
     );
 };
 
