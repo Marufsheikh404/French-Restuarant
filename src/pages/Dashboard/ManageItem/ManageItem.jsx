@@ -39,7 +39,7 @@ const ManageItem = () => {
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
-                    <thead>
+                    <thead className="text-lg bg-[#D1A054]">
                         <tr>
                             <th className="text-black">No</th>
                             <th className="text-black">Image</th>

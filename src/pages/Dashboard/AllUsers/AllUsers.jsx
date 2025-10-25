@@ -69,18 +69,18 @@ const AllUsers = () => {
     return (
         <div>
             <div>
-                <h2 className="text-2xl text-black font-cinzel">Total Users: {users.length}</h2>
+                <h2 className="text-2xl font-bold text-black font-cinzel">Total Users: ({users.length})</h2>
             </div>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
-                    <thead>
+                    <thead  className=" bg-[#D1A054]">
                         <tr>
-                            <th className="text-2xl text-black font-bold">No</th>
-                            <th className="text-2xl text-black font-bold">Name</th>
-                            <th className="text-2xl text-black font-bold">Email</th>
-                            <th className="text-2xl text-black font-bold">Role</th>
-                            <th className="text-2xl text-black font-bold">Action</th>
+                            <th className="text-xl text-black font-bold">No</th>
+                            <th className="text-xl text-black font-bold">Name</th>
+                            <th className="text-xl text-black font-bold">Email</th>
+                            <th className="text-xl text-black font-bold">Role</th>
+                            <th className="text-xl text-black font-bold">Action</th>
                         </tr>
                     </thead>
                     <tbody>

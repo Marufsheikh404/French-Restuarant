@@ -38,18 +38,16 @@ const Dashboard = () => {
                                     <FaList />
                                     <li ><NavLink to={'/dashboard/ManagesItem'}>Manages Items</NavLink></li>
                                 </div>
-
-                                {/* <div className="flex items-center gap-3">
-                                    <FaBook />
-                                    <li ><NavLink to={'/dashboard/'}>Manages Bookings</NavLink></li>
-                                </div> */}
-
                                 <div className="flex items-center gap-3">
                                     <FaUsers />
                                     <li ><NavLink to={'/dashboard/alluser'}>All Users</NavLink></li>
                                 </div>
                                 <div className="divider bg-white w-50 h-1"></div>
-                            </>):(
+                                <div className="flex items-center gap-3">
+                                     <FaHome />
+                                    <li ><NavLink to={'/'}>Home</NavLink></li>
+                                </div>
+                            </>) : (
                                 <>
                                     {/* shared list */}
                                     <div className="flex items-center gap-3">
