@@ -1,87 +1,148 @@
-import { FaAd, FaBook, FaCalculator, FaCaretDown, FaHome, FaPaypal, FaShoppingCart, FaUserAlt, FaUtensils } from "react-icons/fa";
-import { FaList, FaListCheck, FaLock, FaUser, FaUsers } from "react-icons/fa6";
+import {FaHome,FaPaypal,FaUtensils,FaList,FaLock,FaUsers,} from "react-icons/fa";
 import { MdPermContactCalendar } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
-
-    // TODO: get admin value form the database
     const [isAdmin, isAdminLoading] = useAdmin();
-    // const isAdmin = true;
+
+    const activeClass =
+        "flex items-center gap-3 bg-[#800080] text-white p-2 rounded";
+    const inactiveClass =
+        "flex items-center gap-3 p-2 hover:bg-gray-200 rounded text-black";
+
     if (isAdminLoading) {
-        return <span className="loading loading-dots loading-xl"></span>
+        return (
+            <div className="flex justify-center items-center min-h-screen">
+                <span className="loading loading-dots loading-xl"></span>
+            </div>
+        );
     }
+
     return (
-        <section >
-            <div className="flex ">
+        <section>
+            <div className="flex">
                 {/* Dashboard Side Bar */}
-                <div className="w-64 min-h-screen bg-[#D1A054]">
-                    <div className="flex flex-col items-center">
-                        <h1 className="text-black text-3xl font-bold">Bistro Boss</h1>
-                        <p className="text-xm text-black font-cinzel">RESTAURENT</p>
+                <div className="w-64 min-h-screen bg-[#D1A054] text-black">
+                    <div className="flex flex-col items-center py-6">
+                        <h1 className="text-3xl font-bold">Bistro Boss</h1>
+                        <p className="text-sm font-cinzel">RESTAURENT</p>
                     </div>
-                    <ul className="menu p-4">
-                        {
-                            isAdmin ? (<>
-                                <div className="flex items-center gap-3">
+                    <ul className="menu p-4 flex flex-col gap-2">
+                        {isAdmin ? (
+                            <>
+                                <NavLink
+                                    to="/dashboard/adminHome"
+                                    className={({ isActive }) =>
+                                        isActive ? activeClass : inactiveClass
+                                    }
+                                >
                                     <FaHome />
-                                    <li ><NavLink to={'/dashboard/adminHome'}>Admin Home</NavLink></li>
-                                </div>
+                                    <span>Admin Home</span>
+                                </NavLink>
 
-                                <div className="flex items-center gap-3">
+                                <NavLink
+                                    to="/dashboard/AddItems"
+                                    className={({ isActive }) =>
+                                        isActive ? activeClass : inactiveClass
+                                    }
+                                >
                                     <FaUtensils />
-                                    <li ><NavLink to={'/dashboard/AddItems'}>Add Items</NavLink></li>
-                                </div>
+                                    <span>Add Items</span>
+                                </NavLink>
 
-                                <div className="flex items-center gap-3">
+                                <NavLink
+                                    to="/dashboard/ManagesItem"
+                                    className={({ isActive }) =>
+                                        isActive ? activeClass : inactiveClass
+                                    }
+                                >
                                     <FaList />
-                                    <li ><NavLink to={'/dashboard/ManagesItem'}>Manages Items</NavLink></li>
-                                </div>
-                                <div className="flex items-center gap-3">
+                                    <span>Manages Items</span>
+                                </NavLink>
+
+                                <NavLink
+                                    to="/dashboard/alluser"
+                                    className={({ isActive }) =>
+                                        isActive ? activeClass : inactiveClass
+                                    }
+                                >
                                     <FaUsers />
-                                    <li ><NavLink to={'/dashboard/alluser'}>All Users</NavLink></li>
-                                </div>
-                                <div className="divider bg-white w-50 h-1"></div>
-                                <div className="flex items-center gap-3">
-                                     <FaHome />
-                                    <li ><NavLink to={'/'}>Home</NavLink></li>
-                                </div>
-                            </>) : (
-                                <>
-                                    {/* shared list */}
-                                    <div className="flex items-center gap-3">
-                                        <FaHome />
-                                        <li ><NavLink to={'/dashboard/userHome'}>Home</NavLink></li>
-                                    </div>
+                                    <span>All Users</span>
+                                </NavLink>
 
-                                    <div className="flex items-center gap-3">
-                                        <FaListCheck />
-                                        <li ><NavLink to={'/menu'}>Menu</NavLink></li>
-                                    </div>
+                                <div className="divider bg-white w-50 h-1 my-2"></div>
 
-                                    <div className="flex items-center gap-3">
-                                        <FaLock />
-                                        <li ><NavLink to={'/dashboard/shop'}>Shop</NavLink></li>
-                                    </div>
+                                <NavLink
+                                    to="/"
+                                    className={({ isActive }) =>
+                                        isActive ? activeClass : inactiveClass
+                                    }
+                                >
+                                    <FaHome />
+                                    <span>Home</span>
+                                </NavLink>
+                            </>
+                        ) : (
+                            <>
+                                {/* User / Shared section */}
+                                <NavLink
+                                    to="/dashboard/userHome"
+                                    className={({ isActive }) =>
+                                        isActive ? activeClass : inactiveClass
+                                    }
+                                >
+                                    <FaHome />
+                                    <span>Home</span>
+                                </NavLink>
 
-                                    <div className="flex items-center gap-3">
-                                        <MdPermContactCalendar />
-                                        <li ><NavLink to={'/dashboard/contact'}>Contact</NavLink></li>
-                                    </div>
+                                <NavLink
+                                    to="/menu"
+                                    className={({ isActive }) =>
+                                        isActive ? activeClass : inactiveClass
+                                    }
+                                >
+                                    <FaList />
+                                    <span>Menu</span>
+                                </NavLink>
 
-                                    <div className="flex items-center gap-3">
-                                        <FaPaypal></FaPaypal>
-                                        <li ><NavLink to={'/dashboard/paymentHistory'}>Payment-History</NavLink></li>
-                                    </div>
-                                </>
-                            )
-                        }
+                                <NavLink
+                                    to="/dashboard/shop"
+                                    className={({ isActive }) =>
+                                        isActive ? activeClass : inactiveClass
+                                    }
+                                >
+                                    <FaLock />
+                                    <span>Shop</span>
+                                </NavLink>
+
+                                <NavLink
+                                    to="/dashboard/contact"
+                                    className={({ isActive }) =>
+                                        isActive ? activeClass : inactiveClass
+                                    }
+                                >
+                                    <MdPermContactCalendar />
+                                    <span>Contact</span>
+                                </NavLink>
+
+                                <NavLink
+                                    to="/dashboard/paymentHistory"
+                                    className={({ isActive }) =>
+                                        isActive ? activeClass : inactiveClass
+                                    }
+                                >
+                                    <FaPaypal />
+                                    <span>Payment History</span>
+                                </NavLink>
+                            </>
+                        )}
                     </ul>
                 </div>
-                {/* dashboard content */}
+
+                {/* Dashboard Content */}
                 <div className="flex-1 p-8">
-                    <Outlet></Outlet>
+                    <Outlet />
                 </div>
             </div>
         </section>
