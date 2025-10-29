@@ -1,4 +1,4 @@
-import {FaHome,FaPaypal,FaUtensils,FaList,FaLock,FaUsers,} from "react-icons/fa";
+import { FaHome, FaPaypal, FaUtensils, FaList, FaLock, FaUsers, } from "react-icons/fa";
 import { MdPermContactCalendar } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
@@ -21,14 +21,15 @@ const Dashboard = () => {
 
     return (
         <section>
-            <div className="flex">
+            <div className="flex flex-col md:flex-row">
                 {/* Dashboard Side Bar */}
-                <div className="w-64 min-h-screen bg-[#D1A054] text-black">
+                <div className="w-full md:w-64 min-h-[50vh] md:min-h-screen bg-[#D1A054] text-black">
                     <div className="flex flex-col items-center py-6">
-                        <h1 className="text-3xl font-bold">Bistro Boss</h1>
-                        <p className="text-sm font-cinzel">RESTAURENT</p>
+                        <h1 className="text-2xl md:text-3xl font-bold">Bistro Boss</h1>
+                        <p className="text-xs md:text-sm font-cinzel">RESTAURENT</p>
                     </div>
-                    <ul className="menu p-4 flex flex-col gap-2">
+
+                    <ul className="menu p-4 flex flex-col gap-2 text-sm md:text-base">
                         {isAdmin ? (
                             <>
                                 <NavLink
@@ -71,7 +72,7 @@ const Dashboard = () => {
                                     <span>All Users</span>
                                 </NavLink>
 
-                                <div className="divider bg-white w-50 h-1 my-2"></div>
+                                <div className="divider bg-white w-full h-[1px] my-2"></div>
 
                                 <NavLink
                                     to="/"
@@ -85,7 +86,6 @@ const Dashboard = () => {
                             </>
                         ) : (
                             <>
-                                {/* User / Shared section */}
                                 <NavLink
                                     to="/dashboard/userHome"
                                     className={({ isActive }) =>
@@ -141,11 +141,12 @@ const Dashboard = () => {
                 </div>
 
                 {/* Dashboard Content */}
-                <div className="flex-1 p-8">
+                <div className="flex-1 p-4 md:p-8">
                     <Outlet />
                 </div>
             </div>
         </section>
+
     );
 };
 

@@ -35,11 +35,11 @@ const ManageItem = () => {
         });
     }
     return (
-        <div>
+        <div className="w-full px-2 md:px-6">
             <div className="overflow-x-auto">
-                <table className="table">
+                <table className="table w-full min-w-[600px]">
                     {/* head */}
-                    <thead className="text-lg bg-[#D1A054]">
+                    <thead className="text-sm md:text-lg bg-[#D1A054]">
                         <tr>
                             <th className="text-black">No</th>
                             <th className="text-black">Image</th>
@@ -49,48 +49,63 @@ const ManageItem = () => {
                             <th className="text-black">Delete</th>
                         </tr>
                     </thead>
+
                     <tbody>
-                        {
-                            menu.map((item, index) => <tr key={item._id}>
-                                <th>
-                                    {index + 1}
-                                </th>
+                        {menu.map((item, index) => (
+                            <tr key={item._id} className="text-sm md:text-base">
+                                {/* serial */}
+                                <th>{index + 1}</th>
+
                                 {/* image */}
                                 <td>
-                                    <div className="flex items-center gap-3">
+                                    <div className="flex items-center justify-center md:justify-start gap-3">
                                         <div className="avatar">
-                                            <div className="mask mask-squircle h-12 w-12">
+                                            <div className="mask mask-squircle h-10 w-10 md:h-12 md:w-12">
                                                 <img
                                                     src={item.image}
-                                                    alt="Avatar Tailwind CSS Component" />
+                                                    alt={item.name}
+                                                    className="object-cover"
+                                                />
                                             </div>
                                         </div>
                                     </div>
                                 </td>
+
                                 {/* name */}
                                 <td>
                                     <div>
                                         <div className="font-bold">{item.name}</div>
                                     </div>
                                 </td>
+
                                 {/* price */}
-                                <td>
-                                    ${item.price}
-                                </td>
+                                <td>${item.price}</td>
+
                                 {/* update */}
                                 <td>
-                                    <NavLink to={`/dashboard/updateItem/${item._id}`}><button className="btn btn-ghost btn-md"> <GrDocumentUpdate className="text-orange-400" /></button></NavLink>
+                                    <NavLink to={`/dashboard/updateItem/${item._id}`}>
+                                        <button className="btn btn-ghost btn-sm md:btn-md">
+                                            <GrDocumentUpdate className="text-orange-400" />
+                                        </button>
+                                    </NavLink>
                                 </td>
+
                                 {/* delete */}
-                                <th>
-                                    <button onClick={() => handleDelete(item)} className="btn btn-ghost btn-md"><RiDeleteBack2Fill className="text-red-600"></RiDeleteBack2Fill></button>
-                                </th>
-                            </tr>)
-                        }
+                                <td>
+                                    <button
+                                        onClick={() => handleDelete(item)}
+                                        className="btn btn-ghost btn-sm md:btn-md"
+                                    >
+                                        <RiDeleteBack2Fill className="text-red-600" />
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>
         </div>
+
     );
 };
 
