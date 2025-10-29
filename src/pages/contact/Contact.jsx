@@ -20,7 +20,7 @@ const Contact = () => {
                 </div>
 
                 <div className="bg-black p-10 w-full h-40 my-15 flex items-center justify-center">
-                    <h1 className="text-4xl text-gray-200 font-bold">Call Us : 01719199642</h1>
+                    <h1 className="text-xl lg:text-4xl text-gray-200 font-bold">Call Us : 01719199642</h1>
                 </div>
             </div>
 

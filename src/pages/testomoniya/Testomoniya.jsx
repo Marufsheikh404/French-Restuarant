@@ -42,7 +42,7 @@ const Testomoniya = () => {
                                         <div><SiComma  size={40} /></div>
                                     </div>
                                     <p className="text-gray-500 text-md leading-relaxed mt-5">{review.details}</p>
-                                    <h1 className="text-[#CD9003] font-semibold text-4xl mt-2">{review.name}</h1>
+                                    <h1 className="text-[#CD9003] font-semibold text-md lg:text-4xl mt-2">{review.name}</h1>
                                 </div>
                             </SwiperSlide>)
                         }
