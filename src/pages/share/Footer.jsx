@@ -3,7 +3,7 @@ import { LuTwitter } from "react-icons/lu";
 import { AiOutlineYoutube } from "react-icons/ai";
 const Footer = () => {
     return (
-        <footer className="bg-gray-900 text-gray-200">
+        <footer className="bg-gray-900 text-gray-200 mt-5">
             {/* Top Section */}
             <div className="flex flex-col lg:flex-row gap-6 lg:gap-0 p-6 lg:p-10">
                 {/* Contact */}
