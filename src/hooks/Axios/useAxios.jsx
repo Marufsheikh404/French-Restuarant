@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../useAuth";
 
 const axiosSecure = axios.create({
-    baseURL: 'https://bistro-server-mu-nine.vercel.app'
+    baseURL: 'http://localhost:5000'
 });
 const useAxios = () => {
     const navigate = useNavigate(); // ✅ এখন hook এর ভিতরে
@@ -24,7 +24,7 @@ const useAxios = () => {
         return response;
     }, async (error) => {
         const status = error.response.status;
-        // console.log('status error in the interceptors', status);
+        
         // it check you get 401 and 403 status you get to out in the page entry in the login page
         if (status === 401 || status === 403) {
             await logOut();

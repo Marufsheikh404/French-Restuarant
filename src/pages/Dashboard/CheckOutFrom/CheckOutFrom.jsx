@@ -67,14 +67,14 @@ const CheckOutFrom = () => {
             });
 
             if (confirmErr) {
-                console.error('❌ confirmError:', confirmErr.message);
+                console.error('confirmError:', confirmErr.message);
                 return; // error হলে আগের কাজ বন্ধ
             }
 
-            console.log('✅ paymentIntent:', paymentIntent);
+            console.log('paymentIntent:', paymentIntent);
 
             if (paymentIntent.status === "succeeded") {
-                console.log('✅ Transaction Id:', paymentIntent.id);
+                console.log('Transaction Id:', paymentIntent.id);
                 setTransition(paymentIntent.id);
 
                 // save the data to the server
@@ -91,15 +91,15 @@ const CheckOutFrom = () => {
                 try {
                     const res = await axiosSecure.post('/payment', payment);
                     if (res.data?.success) {
-                        console.log('✅ Payment successfully saved:', res.data);
+                        console.log('Payment successfully saved:', res.data);
                     } else {
-                        console.error('⚠️ Payment save failed:', res.data);
+                        console.error('Payment save failed:', res.data);
                     }
                 } catch (err) {
-                    console.error('⚠️ Axios POST /payment failed:', err.response?.data || err.message);
+                    console.error('Axios POST /payment failed:', err.response?.data || err.message);
                 }
             } else {
-                console.warn('⚠️ Payment not succeeded:', paymentIntent.status);
+                console.warn('Payment not succeeded:', paymentIntent.status);
             }
 
         } catch (err) {

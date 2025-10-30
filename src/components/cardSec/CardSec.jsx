@@ -1,4 +1,4 @@
-import SectionTitle from "../sectionTitle/SectionTitle";
+// import SectionTitle from "../sectionTitle/SectionTitle";
 
 const CardSec = ({items}) => {
      const { image, recipe, category } = items;
