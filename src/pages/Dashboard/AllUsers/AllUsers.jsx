@@ -13,7 +13,7 @@ const AllUsers = () => {
             const token = localStorage.getItem('access-token');
             console.log('Token:', token); // check token presence
 
-            const res = await axiosSecure.get('http://localhost:5000/users', {
+            const res = await axiosSecure.get('https://bistro-server-three-xi.vercel.app/users', {
                 headers: {
                     Authorization: `Bearer ${token}` // Capital A
                 }
