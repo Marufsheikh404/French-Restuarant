@@ -1,5 +1,5 @@
 import { CgProfile } from "react-icons/cg";
-import logo from "../../assets/icon/151-1511569_cart-notifications-free-shopping-cart-favicon-hd-png-removebg-preview.png";
+import logo from "../../assets/icon/undefined (1).jpeg";
 import { NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
@@ -47,9 +47,9 @@ const Nav = () => {
             <div className="max-w-7xl mx-auto w-full flex justify-between items-center px-4 lg:px-10">
                 {/* Logo Section */}
                 <div className="flex items-center gap-3">
-                    <img className="w-12 h-12 object-contain" src={logo} alt="logo" />
+                    <img className="w-12 h-12 object-contain rounded-full" src={logo} alt="logo" />
                     <div className="flex flex-col leading-tight text-white">
-                        <span className="text-lg font-bold tracking-wide">BISTRO-BOSS</span>
+                        <span className="text-lg font-bold tracking-wide">FRENCH</span>
                         <span className="text-sm">Restaurant</span>
                     </div>
                 </div>

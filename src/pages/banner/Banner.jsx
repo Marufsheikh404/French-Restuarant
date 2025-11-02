@@ -8,23 +8,23 @@ import img5 from "../../assets/home/05.png"
 
 const Banner = () => {
     return (
-       <Carousel>
-                <div>
-                    <img src={img1} />
-                </div>
-                <div>
-                    <img src={img2} />
-                </div>
-                <div>
-                    <img src={img3} />
-                </div>
-                 <div>
-                    <img src={img4} />
-                </div>
-                 <div>
-                    <img src={img5} />
-                </div>
-            </Carousel>
+        <Carousel>
+            <div>
+                <img src={img4} />
+            </div>
+            <div>
+                <img src={img2} />
+            </div>
+            <div>
+                <img src={img3} />
+            </div>
+            <div>
+                <img src={img1} />
+            </div>
+            <div>
+                <img src={img5} />
+            </div>
+        </Carousel>
     );
 };
 
