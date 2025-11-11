@@ -25,8 +25,8 @@ const Dashboard = () => {
                 {/* Dashboard Side Bar */}
                 <div className="w-full md:w-64 min-h-[50vh] md:min-h-screen bg-[#D1A054] text-black">
                     <div className="flex flex-col items-center py-6">
-                        <h1 className="text-2xl md:text-3xl font-bold">Bistro Boss</h1>
-                        <p className="text-xs md:text-sm font-cinzel">RESTAURENT</p>
+                        <h1 className="text-2xl md:text-3xl font-bold">FRENCH</h1>
+                        <p className="text-xs md:text-sm font-cinzel">Restuarant</p>
                     </div>
 
                     <ul className="menu p-4 flex flex-col gap-2 text-sm md:text-base">
