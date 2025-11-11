@@ -45,7 +45,7 @@ const UserHome = () => {
     return (
         <div>
             <div>
-                <h1 className="flex items-center justify-center">
+                <h1 className="flex items-center justify-center bg-[#D1A054] text-white">
                     <span className="text-3xl text-black mr-3 font-semibold">Well Come</span>
                     <h1 className="text-3xl font-cinzel">
                         {
