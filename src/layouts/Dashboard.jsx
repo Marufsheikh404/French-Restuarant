@@ -107,7 +107,7 @@ const Dashboard = () => {
                                 </NavLink>
 
                                 <NavLink
-                                    to="/dashboard/shop"
+                                    to="/order"
                                     className={({ isActive }) =>
                                         isActive ? activeClass : inactiveClass
                                     }
@@ -117,7 +117,7 @@ const Dashboard = () => {
                                 </NavLink>
 
                                 <NavLink
-                                    to="/dashboard/contact"
+                                    to="/contactUs"
                                     className={({ isActive }) =>
                                         isActive ? activeClass : inactiveClass
                                     }
