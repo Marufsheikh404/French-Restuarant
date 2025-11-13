@@ -61,7 +61,6 @@ const Login = () => {
         }
     };
 
-    // ✅ return অংশ কম্পোনেন্টের ভেতরেই থাকবে
     return (
         <div className="hero w-full mt-7 h-[800px] rounded-md" style={{ backgroundImage: `url(${loginImg})` }}>
             {/* main container: flex row */}
